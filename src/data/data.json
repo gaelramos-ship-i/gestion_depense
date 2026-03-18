@@ -9,7 +9,8 @@
   },
   {
     "day": "wed",
-    "amount": 52.36
+    "amount": 52.36,
+    "fill": "hsl(186, 34%, 65%)"
   },
   {
     "day": "thu",

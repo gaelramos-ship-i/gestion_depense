@@ -1,33 +1,52 @@
 import { BarChart, Bar, XAxis, Tooltip } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
 import data from '../data/data.json';
+import '../styles/spending.scss'
 
 const Spending = () => {
+
+  function CustomTooltip({ payload, active }) {
+  if (active && payload && payload.length) {
+    return (
+      <div className='tooltip'>
+        <p>${payload[0].value}</p>
+      </div>
+    );
+  }
+  return null;
+}
+
   return (
     <>
-      <section>
+      <section className='spendingSection'>
         <h2>Spending - Last 7 days</h2>
 
         <BarChart
-          style={{ width: '100%', maxWidth: '300px', maxHeight: '100px', aspectRatio: 1.618 }}
+          style={{ width: '100%', maxHeight: '200px', aspectRatio: 1.618 }}
           responsive
           data={data}>
 
-          <XAxis dataKey="day" stroke="#333" />
-          <Bar dataKey="amount" fill="#8884d8" activeBar={{ fill: "#333" }} />
-          <Tooltip />
+          <XAxis dataKey="day" stroke="hsl(28, 10%, 53%)" />
+          <Bar 
+          dataKey="amount"
+          fill="hsl(10, 79%, 65%)" 
+          activeBar={{ fill: "hsl(10, 79%, 65%, 0.5)" }} 
+          radius={[4, 4, 4, 4]}
+          />
+          <Tooltip content={CustomTooltip} cursor={false} />
 
           <RechartsDevtools />
         </BarChart>
 
-        <div>
+        <hr />
+
+        <div id='count'> 
           <article>
-            <hr />
             <p>Total this month</p>
             <h2>$478.33</h2>
           </article>
           <article>
-            <p>+2.4%</p>
+            <p id='dark'>+2.4%</p>
             <p>from last month</p>
           </article>
         </div>

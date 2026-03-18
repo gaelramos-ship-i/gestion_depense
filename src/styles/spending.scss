@@ -1,0 +1,52 @@
+@import'./variables';
+
+.spendingSection{
+    width: 450px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    padding-top: 10px;
+    margin-top: 20px;
+    color: $neutral-dark-brown;
+    h2{
+        margin: 20px 0;
+    }
+}
+
+hr{
+    margin: 20px 0;
+    background: $neutral-red;
+    height: 1px;
+    border: 0;
+}
+
+#count{
+    display: flex;
+    justify-content: space-between;
+
+    h2{
+        font-size: 40px;
+    }
+    p{
+        color: $neutral-light-brown;
+    }
+    #dark{
+        color: $neutral-dark-brown;
+        font-weight: 700;
+        margin-top: 34px;
+    }
+    article{
+        line-height: 0.5;
+    }
+}
+
+.recharts-zIndex-layer_500{
+    display: none;
+}
+
+.tooltip{
+    background: $neutral-dark-brown;
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 20px;
+}
