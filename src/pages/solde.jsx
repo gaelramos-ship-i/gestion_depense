@@ -1,14 +1,15 @@
+import '../styles/global.scss'
 
 function Solde(){
 
     return (
-        <div>
+        <section>
             <article>
                 <p>My balance</p>
-                <h2>$000.00</h2>
+                <h2>$941.68</h2>
             </article>
             <img src="images\logo.svg" alt="logo" />
-        </div>
+        </section>
     )
 }
 

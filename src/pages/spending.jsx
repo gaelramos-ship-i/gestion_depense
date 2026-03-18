@@ -5,7 +5,7 @@ import data from '../data/data.json';
 const Spending = () => {
   return (
     <>
-      <div>
+      <section>
         <h2>Spending - Last 7 days</h2>
 
         <BarChart
@@ -24,14 +24,14 @@ const Spending = () => {
           <article>
             <hr />
             <p>Total this month</p>
-            <h2>$000.00</h2>
+            <h2>$478.33</h2>
           </article>
           <article>
-            <p>+0.0%</p>
+            <p>+2.4%</p>
             <p>from last month</p>
           </article>
         </div>
-      </div>
+      </section>
     </>
   );
 };
