@@ -1,4 +1,4 @@
-import { BarChart, Bar, XAxis, Tooltip } from 'recharts';
+import { BarChart, Bar, XAxis, Tooltip, Rectangle, Cell } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
 import data from '../data/data.json';
 import '../styles/spending.scss'
@@ -6,15 +6,15 @@ import '../styles/spending.scss'
 const Spending = () => {
 
   function CustomTooltip({ payload, active }) {
-  if (active && payload && payload.length) {
-    return (
-      <div className='tooltip'>
-        <p>${payload[0].value}</p>
-      </div>
-    );
+    if (active && payload && payload.length) {
+      return (
+        <div className='tooltip'>
+          <p>${payload[0].value}</p>
+        </div>
+      );
+    }
+    return null;
   }
-  return null;
-}
 
   return (
     <>
@@ -27,12 +27,29 @@ const Spending = () => {
           data={data}>
 
           <XAxis dataKey="day" stroke="hsl(28, 10%, 53%)" />
-          <Bar 
-          dataKey="amount"
-          fill="hsl(10, 79%, 65%)" 
-          activeBar={{ fill: "hsl(10, 79%, 65%, 0.5)" }} 
-          radius={[4, 4, 4, 4]}
-          />
+
+          <Bar
+            dataKey="amount"
+            radius={[4, 4, 4, 4]}
+            fill="hsl(10, 79%, 65%)"
+            activeBar={(props) => {
+              const fill = props.fill || "hsl(10, 79%, 65%)";
+
+              const hoverFill = fill
+                .replace(")", ", 0.6)")
+                .replace("hsl", "hsla");
+
+              return <Rectangle {...props} fill={hoverFill} />;
+            }}
+          >
+            {data.map((entry, index) => (
+              <Cell
+                key={index}
+                fill={entry.fill || "hsl(10, 79%, 65%)"}
+              />
+            ))}
+          </Bar>
+
           <Tooltip content={CustomTooltip} cursor={false} />
 
           <RechartsDevtools />
@@ -40,7 +57,7 @@ const Spending = () => {
 
         <hr />
 
-        <div id='count'> 
+        <div id='count'>
           <article>
             <p>Total this month</p>
             <h2>$478.33</h2>
